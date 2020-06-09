@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"os"
 	"strconv"
@@ -63,6 +64,8 @@ func run(args []string) error {
 	fmt.Printf("直さ率:%v%%の場合: %v\n", 90, caluc(i, 90))
 	fmt.Printf("直さ率:%v%%の場合: %v\n", 100, caluc(i, 100))
 	fmt.Println("------------------------")
-
+	fmt.Print("終了するにはenterを押してください? ")
+	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Scan()
 	return nil
 }
