@@ -1,0 +1,35 @@
+project_name: wtime
+env:
+  - GO111MODULE=on
+before:
+  hooks:
+    - go mod tidy
+builds:
+  - main: cmd/wtime/wtime.go
+    binary: wtime
+    goos: # default では linux と darwin だけだけど windows 用のバイナリも作るようにしてみる
+      - linux
+      - darwin
+      - windows
+    goarch: # default では 386 と amd64 だけど今更 32bit は不要かなと
+      - amd64
+    ldflags: 
+      - -s -w
+      - -X github.com/akira393/wtime/cmd.Version={{.Version}}
+      - -X github.com/akira393/wtime/cmd.BuildTag={{.Tag}}
+    env:
+      - CGO_ENABLED=0
+archives:
+  - name_template: '{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
+    replacements:
+      darwin: Darwin
+      linux: Linux
+      windows: Windows
+      386: i386
+      amd64: x86_64
+    format_overrides:
+      - goos: windows
+        format: zip
+release:
+  prerelease: auto
+
