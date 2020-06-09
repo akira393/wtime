@@ -1,4 +1,8 @@
 #/bin/bash
+#gitginoreを追加
+#readmeの編集
+#タグの付け方
+#タグの消し方
 
 function touchp () {
     if [ ! -f $1 ] ;then
@@ -14,7 +18,7 @@ fi
 
 go mod init "github.com/akira393/$1"
 
-main_file="cmd/$1/main.go"
+main_file="cmd/$1/$1.go"
 
 touchp $main_file
 cat <<EOF >$main_file
