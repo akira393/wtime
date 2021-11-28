@@ -51,7 +51,7 @@ func run(args []string) error {
 	// }
 	// if len(args[1]) != 4 {
 	// 	return fmt.Errorf("引数が指定のフォーマットではありません．例:0840\n")
-	// }
+	// }//
 	i, _ := strconv.Atoi(args[1]) // int: 0840
 
 	// fmt.Println(caluc(i, 85))
